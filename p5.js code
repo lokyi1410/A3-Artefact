@@ -1,1 +1,185 @@
+var cloud;
+var sky;
+var win;
+var table;
+var laptopo;
+var laptopf;
+var mugf;
+var muge;
+var phonef;
+var pon1;
+var pon2;
+var pon3;
+let song1;
+let song2;
+let song3;
+var songs;
+var a;
+var tvo;
+var static;
+var netflix;
+var wall;
+var cloudx = 90;
+var cloudy = 320;
+var skyx = 300;
+var skyy = 200;
+var winx = 300;
+var winy = 200;
+var tablex = 300;
+var tabley = 250;
+var laptopfx = 300;
+var laptopfy = 250;
+var mugex = 300;
+var mugey = 250;
+var mugfx = 300;
+var mugfy = 250;
+var phonefx = 300;
+var phonefy = 250;
+var pon1x = 300;
+var pon1y = 250;
+var pon2x = 300;
+var pon2y = 250;
+var pon3x = 300;
+var pon3y = 250;
+var tvox = 300;
+var tvoy = 250;
+var staticx = 300;
+var staticy = 250;
+var netflixx = 300;
+var netflixy = 250;
+var wallx = 300;
+var wally = 225;
 
+function setup() {
+  let cnv = createCanvas(550, 500);
+  cnv.position(-50, 0);
+  frameRate(10);
+  song1 = loadSound("img/rfiy.mp3");
+  song2 = loadSound("img/goodbye.mp3");
+  song3 = loadSound("img/reflection.mp3");
+  laptop = 0;
+  mug = 0;
+  phone = 0;
+  a = 0;
+  songs = [song1, song2, song3];
+  tv = 0;
+}
+
+function draw() {
+  imageMode(CENTER);
+  image(wall, wallx, wally, 500, 500);
+  image(sky, skyx, skyy, 500, 450);
+  image(cloud, cloudx, cloudy, 500, 450);
+  image(win, winx, winy, 500, 450);
+  image(table, tablex, tabley, 500, 450);
+  image(laptopf, laptopfx, laptopfy, 500, 450);
+  image(muge, mugex, mugey, 500, 450);
+  image(mugf, mugfx, mugfy, 500, 450);
+  image(pon1, pon1x, pon1y, 500, 450);
+  image(pon2, pon2x, pon2y, 500, 450);
+  image(pon3, pon3x, pon3y, 500, 450);
+  image(phonef, phonefx, phonefy, 500, 450);
+  image(netflix, netflixx, netflixy, 500, 450);
+  image(static, staticx, staticy, 500, 450);
+  image(tvo, tvox, tvoy, 500, 450);
+
+  if (laptop === 1) {
+    image(laptopo, 300, 250, 500, 450);
+  } else if (laptop === 2) {
+    image(laptopf, 300, 250, 500, 450);
+  }
+  if (mug === 1) {
+    image(muge, 300, 250, 500, 450);
+  } else if (mug === 2) {
+    image(mugf, 300, 250, 500, 450);
+  }
+  if (phone === 1) {
+    image(pon1, 300, 250, 500, 450);
+  } else if (phone === 2) {
+    image(pon2, 300, 250, 500, 450);
+  } else if (phone === 3) {
+    image(pon3, 300, 250, 500, 450);
+  }
+  if (tv === 1) {
+    image(tvo, 300, 250, 500, 450);
+  } else if (tv === 2) {
+    image(static, 300, 250, 500, 450);
+  } else if (tv === 3) {
+    image(netflix, 300, 250, 500, 450);
+  }
+  if (keyIsDown(RIGHT_ARROW)) {
+    cloudx = cloudx + 5;
+    cloudy = cloudy - 3;
+  }
+}
+
+function preload() {
+  cloud = loadImage("img/cloudv2.png");
+  sky = loadImage("img/sky.png");
+  win = loadImage("img/win.png");
+  table = loadImage("img/table.png");
+  laptopf = loadImage("img/laptop off.png");
+  laptopo = loadImage("img/laptop on.png");
+  muge = loadImage("img/mug emp.png");
+  mugf = loadImage("img/mug fill.png");
+  phonef = loadImage("img/phone off.png");
+  pon1 = loadImage("img/pon1.png");
+  pon2 = loadImage("img/pon2.png");
+  pon3 = loadImage("img/pon3.png");
+  static = loadImage("img/static.png");
+  netflix = loadImage("img/netflix.png");
+  tvo = loadImage("img/tvoff.png");
+  wall = loadImage("img/wall.png");
+}
+
+let value = 0;
+
+function keyPressed() {
+  if (keyCode === LEFT_ARROW) {
+    songs[a].stop();
+    a -= 1;
+    if (a < 0) a = 2;
+    songs[a].play();
+
+    phone++;
+    if (phone === 4) phone = 1;
+  }
+
+  if (key === "S" || key === "s") {
+    if (songs[a].isPlaying() === true) {
+      phone = 0;
+      songs[a].stop();
+    } else if (songs[a].isPlaying() === false) {
+      a = 0;
+      songs[a].play();
+      phone = 1;
+    }
+  }
+  if (keyCode == UP_ARROW) {
+    tv++;
+    if (tv === 4) tv = 1;
+  }
+}
+
+function mousePressed() {
+  laptop++;
+  if (laptop === 3) laptop = 1;
+}
+
+function mouseWheel(){
+  scrollDelta = event.delta; 
+  if (scrollDelta > 0) { 
+        mug++;
+    if(mug === 3) mug = 1;
+    }  
+    else {
+    mug = 1;
+    }
+  if (scrollDelta < 0) { 
+        mug--;
+    if(mug === 3) mug = 1;
+    }  
+    else {
+    mug = 1;
+    }
+}
